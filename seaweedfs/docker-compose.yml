@@ -1,14 +1,13 @@
 services:
   seaweedfs:
-    # Pin the version you're running now (4.48) so a restart can't silently upgrade.
     image: chrislusf/seaweedfs:4.48
     container_name: seaweedfs
     restart: unless-stopped
 
     ports:
       - "8333:8333"              # S3 API: needs keys, apps use this
-      - "127.0.0.1:9333:9333"    # Master / admin UI: this machine only (no auth)
-      - "127.0.0.1:8888:8888"    # Filer: this machine only (no auth, full file access)
+      - "127.0.0.1:9333:9333"    # Master / admin UI
+      - "127.0.0.1:8888:8888"    # Filer: this machine only
 
     environment:
       AWS_ACCESS_KEY_ID: ${S3_ACCESS_KEY}
